@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'api/users';
+const url = process.env.VUE_APP_API_ENDPOINT + '/users';
 
 class UserService {
     // Get Users

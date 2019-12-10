@@ -2,11 +2,13 @@
   <div class="peserta">
         <button class="btn-animate" @click="animated = !animated" ref="buttonAnimated">-</button><br>
         <br><br><br><br>
-        <img id="dishPhoto" alt="Vue logo" src="../assets/default-profile-picture.png" height="220dp" width=auto>
+        <transition name="animate" enter-active-class="animated zoomInDown" leave-active-class="animated zoomOutUp">
+          <img class="animated infinite tada slow" id="dishPhoto" alt="Vue logo" src="../assets/default-profile-picture.png" height="220dp" width=auto />
+        </transition>
         <br><br>
         <section>
         <!-- <transition name="bounce"> -->
-        <h6>Selamat Datang!</h6>
+        <h5>Selamat Datang!</h5>
         <!-- </transition> -->
         
         <!-- <transition name="animate" enter-active-class="animated flipInY" leave-active-class="animated zoomOutRight">
@@ -17,8 +19,8 @@
             <h1 v-if="animated">{{ users[0].nama }}</h1>
         </transition>
 
-        <transition name="animate" enter-active-class="animated zoomInDown" leave-active-class="animated zoomOutUp">
-            <h7 v-if="animated">{{ users[0].email }}</h7>
+        <transition name="animate" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+            <h6 v-if="animated">({{ users[0].email }})</h6>
         </transition>
 
         <!-- <transition name="animate" enter-active-class="animated zoomInDown" leave-active-class="animated zoonOutUp">
@@ -50,9 +52,6 @@ export default {
         this.fetchData
     },
     methods: {
-        greet: function () {
-            alert()
-        },
         fetchData: async function () {
             try {
                 this.users = await UserService.getUsers();
@@ -91,15 +90,15 @@ h1 {
   font-size: 3.8em;
   font-family: 'Gill Sans'
 }
-h7 {
+h5 {
   margin: 1px 0 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 h6 {
   margin: 1px 0 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 2em;
+  font-size: 1em;
 }
 ul {
   list-style-type: none;
@@ -115,62 +114,5 @@ a {
 
 .btn-animate {
     display: none
-}
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
-@keyframes animate-in {
-    0% {
-        transform: scale(0) rotateZ(0deg) translateX(-250px);
-        opacity: 0;
-    }
-    25% {
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1) rotateZ(360deg) translateX(0px);
-        opacity: 1;
-    }
-}
-
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-.roll-enter-active {
-  animation: roll-in .5s;
-}
-.roll-leave-active {
-  animation: roll-in .5s reverse;
-}
-@keyframes roll-in {
-  0% {
-    transform: scale(0) rotateZ(0deg) translateX(-250px);
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1) rotateZ(360deg) translateX(0px);
-    opacity: 1;
-  }
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
 }
 </style>
